@@ -25,18 +25,21 @@
 
 ## Tabela OP_SEL
 
-| OP_SEL | Operacja        | Opis                                    |
-|--------|----------------|----------------------------------------|
-| 1      | ADD            | D_A + D_B                               |
-| 2      | SUB            | D_A - D_B                               |
-| 3      | AND            | D_A & D_B                               |
-| 4      | OR             | D_A \| D_B                              |
-| 5      | XOR            | D_A ^ D_B                               |
-| 6      | NOT            | ~D_A                                    |
-| 7      | SHL            | Przesunięcie bitowe w lewo D_A         |
-| 8      | SHR            | Przesunięcie bitowe w prawo D_A        |
-| 9      | ROL            | Rotacja w lewo D_A                      |
-| 10     | ROR            | Rotacja w prawo D_A                     |
+| OP_SEL | Operacja | Opis                                      |
+|--------|----------|--------------------------------------------|
+| 1      | ADD      | D_A + D_B                                  |
+| 2      | SUB      | D_A - D_B                                  |
+| 3      | AND      | D_A & D_B                                  |
+| 4      | OR       | D_A \| D_B                                 |
+| 5      | XOR      | D_A ^ D_B                                  |
+| 6      | NOT      | ~D_A                                       |
+| 7      | SHL      | Przesunięcie bitowe w lewo D_A            |
+| 8      | SHR      | Przesunięcie bitowe w prawo D_A           |
+| 9      | ROL      | Rotacja w lewo D_A                         |
+| 10     | ROR      | Rotacja w prawo D_A                        |
+| 11     | INC      | Zwiększa D_A o 1                           |
+| 12     | DEC      | Zmniejsza D_A o 1                          |
+
 
 ## Rozmiar danych
 

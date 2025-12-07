@@ -108,6 +108,10 @@ def alu():
             reg["RES"] = hex((reg["D_A"] << 1) | (reg["D_A"] >> 7))
         case 10: # ROR A    
             reg["RES"] = hex((reg["D_A"] >> 1) | (reg["D_A"] << 7))
+        case 11: # INC A (A+1)
+            reg["RES"] = hex(reg["D_A"]+1)
+        case 12: # DEC A (A-1)
+            reg["RES"] = hex(reg["D_A"]-1)
         
             
 if __name__ == "__main__":
