@@ -23,6 +23,30 @@
 
 - **Etykiety** i skoki pozwalają tworzyć pętle i warunki w programach  
 
+## Tabela OP_SEL
+
+| OP_SEL | Operacja        | Opis                                    |
+|--------|----------------|----------------------------------------|
+| 1      | ADD            | D_A + D_B                               |
+| 2      | SUB            | D_A - D_B                               |
+| 3      | AND            | D_A & D_B                               |
+| 4      | OR             | D_A \| D_B                              |
+| 5      | XOR            | D_A ^ D_B                               |
+| 6      | NOT            | ~D_A                                    |
+| 7      | SHL            | Przesunięcie bitowe w lewo D_A         |
+| 8      | SHR            | Przesunięcie bitowe w prawo D_A        |
+| 9      | ROL            | Rotacja w lewo D_A                      |
+| 10     | ROR            | Rotacja w prawo D_A                     |
+
+## Rozmiar danych
+
+- Wszystkie **rejestry** są 8-bitowe (`0x00`–`0xFF`)  
+- **RAM**: 255 bajtów, adresowane od `[0x00]` do `[0xFE]`  
+- Rejestry: `R0, R1, R2, R3, D_A, D_B, OP_SEL, RES`  
+  - `D_A, D_B` – operandy dla ALU  
+  - `OP_SEL` – wybór operacji ALU  
+  - `RES` – wynik operacji  
+
 ## Przykłady użycia
 
 ### Tryb plikowy
@@ -66,11 +90,6 @@ OUT RES
 
 * Wartości są reprezentowane w **hex** (np. `0x0F`)
 * Własna klasa `hex` obsługuje maskowanie i negację bitową
-
-## Struktura pamięci i rejestrów
-
-* **Rejestry:** `R0, R1, R2, R3, D_A, D_B, OP_SEL, RES`
-* **RAM:** 255 bajtów, adresowane od `[0x00]` do `[0xFE]`
 
 ## Licencja
 
