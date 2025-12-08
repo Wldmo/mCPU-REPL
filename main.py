@@ -1,12 +1,27 @@
 import sys
 class hex(int):
-    def __new__(cls, value, places=2):
+    def __new__(cls, value, places=2, type="HEX"):
         obj = int.__new__(cls, value % (16**places))
         obj.places = places
+        obj.type = type
         return obj
 
     def __str__(self):
-        return f"0x{int(self):0{self.places}X}"
+        match self.type:
+            case 'HEX': return f"0x{int(self):0{self.places}X}"
+            case 'INT': return int(self)
+            case 'STR': 
+                s = f"{int(self):0{self.places}X}"
+                out = ""
+                for i in range(0, len(s), 2):
+                    byte = s[i:i+2]
+                    try:
+                        out += chr(int(byte, 16))
+                    except:
+                        out += "?"
+                return out
+                
+
     
     def __repr__(self):
         return str(self)
@@ -29,7 +44,7 @@ reg = {
 
 def h_commands():
     while True:
-        command = input()
+        command = input(">>> ")
         if (command == ""): continue
         parts = command.replace(",", "").split()
 
@@ -72,17 +87,22 @@ def handle(command,parts):
                         reg[addr] = mem[addr2]
                     elif parts[1].strip().upper() in reg:
                         addr2 = parts[1].strip().upper()
-                        reg[addr] = reg[addr2]
+                        reg[addr] = hex(reg[addr2],reg[addr].places, reg[addr].type)
                     elif parts[1].isdigit():
-                        reg[addr] = hex(int(parts[1]))
+                        reg[addr] = hex(int(parts[1]),reg[addr].places, reg[addr].type)
                     elif parts[1].startswith("0x"):
-                        reg[addr] = hex(int(parts[1], 16))
+                        reg[addr] = hex(int(parts[1], 16), reg[addr].places, reg[addr].type)
                     else:
                         errors("<MOV addr1, addr2> nie znaleziono addr2")
                 else:
                     errors("<MOV addr1, addr2> nie znaleziono addr1")
             case 'ALU':
-                alu()                
+                alu()       
+            case 'DEF': # DEF INT/STR/HEX <NAZWA REJESTRU> <WIELKOSC>
+                type = parts.pop(0).upper()
+                wielkosc = int(parts.pop(1))
+                reg[parts[0].upper()]=hex(0,wielkosc,type)
+
 def errors(wiadomosc):
     print(f"[ERROR]:{wiadomosc}")
 

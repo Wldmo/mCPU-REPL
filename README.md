@@ -43,12 +43,31 @@
 
 ## Rozmiar danych
 
-- Wszystkie **rejestry** poza OP_SEL są 8-bitowe (`0x00`–`0xFF`)  
-- **OP_SEL** – 4-bitowe (`0x0`–`0xF`), wybór operacji ALU  
-- **RAM**: 255 jednostek 8-bitowych, adresowane od `[0x00]` do `[0xFE]`  
-- Rejestry: `R0, R1, R2, R3, D_A, D_B, OP_SEL, RES`  
-  - `D_A, D_B` – operandy dla ALU  
-  - `RES` – wynik operacji  
+* Wszystkie rejestry poza `OP_SEL` są 8-bitowe (`0x00`–`0xFF`)
+* `OP_SEL` ma 4 bity (`0x0`–`0xF`) i wybiera operację ALU
+* RAM ma 255 bajtów, adresy `[0x00]` do `[0xFE]`
+* Dostępne rejestry: `R0, R1, R2, R3, D_A, D_B, OP_SEL, RES`
+
+  * `D_A` i `D_B` to wejścia do ALU
+  * `RES` dostaje wynik
+
+### Dynamiczne rejestry użytkownika (DEF)
+
+Możesz tworzyć własne rejestry komendą:
+
+```
+DEF INT|STR|HEX <NAZWA> <WIELKOSC>
+```
+
+* `WIELKOSC` podajesz w hex
+* 1 jednostka wielkości = 4 bity
+* Przykłady:
+
+  * `DEF INT MYREG 0x2` → 8-bitowy rejestr
+  * `DEF HEX TMP 0x4` → 16-bitowa przestrzeń
+  * `DEF STR BUF 0x10` → bufor 64-bitowy (8 bajtów)
+
+Rejestry stworzone przez `DEF` zachowują się jak normalne pola pamięci z określonym rozmiarem i możesz ich używać w MOV, OUT itd.
 
 
 ## Przykłady użycia
