@@ -66,6 +66,10 @@ DEF INT|STR|HEX <NAZWA> <WIELKOSC>
   * `DEF INT MYREG 0x2` → 8-bitowy rejestr
   * `DEF HEX TMP 0x4` → 16-bitowa przestrzeń
   * `DEF STR BUF 0x10` → bufor 64-bitowy (8 bajtów)
+  - Albo
+  * `DEF INT MYREG 2` → 8-bitowy rejestr
+  * `DEF HEX TMP 4` → 16-bitowa przestrzeń
+  * `DEF STR BUF 16` → bufor 64-bitowy (8 bajtów)
 
 Rejestry stworzone przez `DEF` zachowują się jak normalne pola pamięci z określonym rozmiarem i możesz ich używać w MOV, OUT itd.
 

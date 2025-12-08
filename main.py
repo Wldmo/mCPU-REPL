@@ -100,7 +100,10 @@ def handle(command,parts):
                 alu()       
             case 'DEF': # DEF INT/STR/HEX <NAZWA REJESTRU> <WIELKOSC>
                 type = parts.pop(0).upper()
-                wielkosc = int(parts.pop(1))
+                if parts[1].isdigit():
+                    wielkosc = int(parts[1])
+                elif parts[1].startswith("0x"):
+                    wielkosc = int(parts[1], 16)
                 reg[parts[0].upper()]=hex(0,wielkosc,type)
 
 def errors(wiadomosc):
@@ -158,7 +161,7 @@ if __name__ == "__main__":
             i = 0
             while i < len(linie):
                 linia = linie[i]
-                if linia and not linia.startswith(";") and not linia.endswith(":"):
+                if linia and not linia.startswith(";") and not linia.endswith(":") and not linia.strip()=="":
                     parts = linia.replace(",", "").split()
                     command = parts.pop(0).upper()
                     if command == "JMP":  # bezwarunkowy skok
